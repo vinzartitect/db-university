@@ -38,3 +38,14 @@ FROM `students`
 JOIN `degrees` ON `students` . `degree_id` = `degrees` . `id`
 JOIN `departments` ON `departments` . `id` = `degrees` . `department_id` 
 ORDER BY `students` . `surname` ASC, `students` . `name` ASC;
+
+
+6. Selezionare tutti i docenti che insegnano nel dipartimento di Matematica (54)
+
+SELECT COUNT( DISTINCT `teachers` . `id`)
+FROM `teachers`
+JOIN `course_teacher` ON `course_teacher` . `teacher_id` = `teachers` . `id`
+JOIN `courses` ON `course_teacher` . `course_id` = `courses` . `id`
+JOIN `degrees` ON `courses` . `degree_id` = `degrees` . `id`
+JOIN `departments` ON `degrees` . `department_id` = `departments` . `id`
+WHERE `departments` . `name` = "Dipartimento di Matematica"
